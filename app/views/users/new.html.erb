@@ -1,1 +1,16 @@
 <h1>New User</h1>
+
+<%= form_for @user do |f| %>
+
+    <!-- User Name -->
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %><br>
+
+    <!-- User Email -->
+
+    <!-- User Password -->
+
+    <!-- submit -->
+    <%= f.submit %>
+    
+<% end %>
