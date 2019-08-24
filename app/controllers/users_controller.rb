@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find_by(params[:id])
+        @user = User.find(params[:id])
     end
 
     def new
@@ -12,17 +12,17 @@ class UsersController < ApplicationController
     end
 
     def create
-        binding.pry
+        # binding.pry
         # => <ActionController::Parameters {"name"=>"Adam", "email"=>"adam@gmail.com", "password"=>"password"} 
         # permitted: false>
         # @user = User.find_or_create_by(email: user_params[:email])
         @user = User.find_by(email: user_params[:email])
         if @user
             message = "Email already in use. Try another email."
-            render 'new'
+            redirect_to new_user_path # render 'new'
         else
             @user = User.create(user_params)
-            redirect_to @user # redirect_to user_path(@user)
+            redirect_to user_path(@user) # redirect_to @user
         end
     end
 
