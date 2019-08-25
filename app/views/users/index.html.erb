@@ -1,3 +1,5 @@
-<h1>Test</h1>
-
-<% binding.pry %>
+<h1>Users Index</h1>
+<% @users.each do |user| %>
+    <p>Name: <%= user.name %></p>
+    <p>Email: <%= user.email %></p>
+<% end %>
