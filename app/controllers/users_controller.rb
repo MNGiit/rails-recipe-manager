@@ -4,12 +4,16 @@ class UsersController < ApplicationController
     end
 
     def show
-        binding.pry
         @user = User.find(params[:id])
     end
 
     def new
-        @user = User.new
+        binding.pry
+        if !session[:user_id]
+            @user = User.new
+        else
+            redirect_to root_path
+        end
     end
 
     def create
