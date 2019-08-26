@@ -4,7 +4,6 @@ class RecipesController < ApplicationController
     end
 
     def new
-        binding.pry
         if session[:user_id]
             if session[:user_id] == params[:user_id].to_i
                 @recipe = Recipe.new
@@ -14,5 +13,10 @@ class RecipesController < ApplicationController
         else
             redirect_to login_path
         end
+    end
+
+    def create
+        binding.pry
+        redirect_to recipes_path
     end
 end
