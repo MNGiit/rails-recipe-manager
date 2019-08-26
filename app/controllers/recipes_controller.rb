@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
     def new
         binding.pry
         if session[:user_id]
-            if session[:user_id] == params[:user_id]
+            if session[:user_id] == params[:user_id].to_i
                 @recipe = Recipe.new
             else
                 redirect_to "/users/#{session[:user_id]}"
