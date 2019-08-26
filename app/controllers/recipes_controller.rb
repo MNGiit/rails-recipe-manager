@@ -16,8 +16,14 @@ class RecipesController < ApplicationController
     end
 
     def create
-        params[:recipe].merge!(user_id: params[:user_id])
+        params[:recipe].merge!(user_id: params[:user_id]) # .merge helps add :user_id to params[:recipe]
         binding.pry
         redirect_to recipes_path
+    end
+
+    private
+
+    def recipe_params
+        params.require(:recipe).permit(:name, :user_id)
     end
 end
