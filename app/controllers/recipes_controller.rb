@@ -4,6 +4,10 @@ class RecipesController < ApplicationController
     end
 
     def new
-        @recipe = Recipe.new
+        if session[:user_id]
+            @recipe = Recipe.new
+        else
+            redirect_to login_path
+        end
     end
 end
