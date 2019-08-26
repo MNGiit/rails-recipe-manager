@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     end
 
     def new
-        binding.pry
         if !session[:user_id]
             @user = User.new
         else
@@ -42,5 +41,4 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:name, :email, :password)
     end
-
 end
