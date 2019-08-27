@@ -2,7 +2,7 @@ class CreateIngredientLists < ActiveRecord::Migration[5.2]
   def change
     create_table :ingredient_lists do |t|
       t.string :name
-    
+
     # how to create table with one of the attributes being an array
     # this is for ingredients, because a recipe has more than 1 ingredient
     # https://stackoverflow.com/questions/32409820/add-an-array-column-in-rails

@@ -12,6 +12,11 @@ brian = User.create(name: 'Brian', email: 'brian@gmail.com', password: 'password
 rebecca = User.create(name: 'Rebecca', email: 'rebecca@gmail.com', password: 'password')
 cindy = User.create(name: 'Cindy', email: 'cindy@gmail.com', password: 'password')
 
+water = Ingredient.create(name: "Water")
+orange = Ingredient.create(name: "Orange")
+
+# oj = Recipe.create(name: "Orange Juice", user: bob, ingredients: [water, orange])
+
 pbj = Recipe.create(name: 'PBJ Sandwich', user_id: bob.id)
 egg_sandwich = Recipe.create(name: 'Egg sandwich', user_id: bob.id)
 cup_ramen = Recipe.create(name: 'Cup Ramen', user_id: bob.id)
