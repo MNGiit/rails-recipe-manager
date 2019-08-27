@@ -2,5 +2,5 @@
 <h3>All recipes by our members</h3>
 
 <% @recipes.each do |recipe| %>
-    <p><%= recipe.name %></p>
+    <p><%= recipe.name %>, by <%= recipe.user.name %></p>
 <% end %>
