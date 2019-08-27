@@ -4,3 +4,5 @@
 <% @recipe.ingredients.each do |i| %>
     <p><%= i.name %></p>
 <% end %>
+
+<%= link_to "Edit Recipe", edit_user_recipe_url(@recipe.user.id, @recipe) if @recipe.user.id == session[:user_id]%>
