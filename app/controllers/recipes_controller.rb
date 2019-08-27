@@ -53,13 +53,12 @@ class RecipesController < ApplicationController
     end
     
     def edit
-        binding.pry
         # this is what params looks like
         # {"controller"=>"recipes", "action"=>"edit", "user_id"=>"6", "id"=>"25"}
         # redirect_to "/users/#{session[:user_id]}/recipes/#{params[:user_id]}/edit"
         if session[:user_id]
             if session[:user_id] == params[:user_id].to_i
-                @recipe = Recipe.new
+                @recipe = Recipe.find(params[:id])
             else
                 redirect_to "/users/#{session[:user_id]}"
             end
@@ -68,6 +67,9 @@ class RecipesController < ApplicationController
         end     
     end
 
+    def update
+
+    end
     private
 
     def recipe_params
