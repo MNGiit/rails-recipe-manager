@@ -23,11 +23,11 @@ class RecipesController < ApplicationController
         ings = params[:recipe][:ingredients].collect do |ing|
             Ingredient.new(name: ing[:name])
         end
-        recipe = Recipe.new(recipe_params)
-        recipe.ingredients = ings
-        recipe.save
+        @recipe = Recipe.new(recipe_params)
+        @recipe.ingredients = ings
+        @recipe.save
         binding.pry
-        redirect_to recipes_path
+        redirect_to @recipe
     end
 
     private
