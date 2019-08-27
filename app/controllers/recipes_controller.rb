@@ -20,13 +20,31 @@ class RecipesController < ApplicationController
         params[:recipe].merge!(ingredients: params[:ingredients])
         params[:recipe].permit! # can't get ingredient_params to work, but this works
         # ings = params[:recipe][:ingredients]
-        ings = params[:recipe][:ingredients].collect do |ing|
-            Ingredient.new(name: ing[:name])
+
+        # old way where it doesn't get rid of nil values..it works but i want the nil values gone
+        # ings = params[:recipe][:ingredients].collect do |ing|
+        #     Ingredient.find_or_create_by(name: ing[:name])
+        # end
+
+        # use .compact to get rid of nil values
+        arr = params[:recipe][:ingredients].collect do |ing|
+            if ing[:name] != ""
+                ing
+            end
+        end.compact # use .compact to get rid of nil values
+
+        ings = arr.map do |ing|
+            Ingredient.find_or_create_by(name: ing[:name])
         end
+
+        binding.pry
+
+
+        
         @recipe = Recipe.new(recipe_params)
         @recipe.ingredients = ings
         @recipe.save
-        binding.pry
+    
         redirect_to @recipe
     end
 
