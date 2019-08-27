@@ -39,8 +39,6 @@ class RecipesController < ApplicationController
             Ingredient.find_or_create_by(name: ing[:name])
         end
 
-        binding.pry
-
         @recipe = Recipe.new(recipe_params)
         @recipe.ingredients = ings
         @recipe.save
@@ -68,7 +66,22 @@ class RecipesController < ApplicationController
     end
 
     def update
+        params[:recipe].merge!(user_id: params[:user_id]).merge!(ingredients: params[:ingredients]) # .merge helps add :user_id to params[:recipe]
+        # params[:recipe].merge!(ingredients: params[:ingredients])
+        # params[:recipe].permit! can be avoided, look at recipe_params. but this leads to Ingredient.new problem
+        params[:recipe].permit! # can't get ingredient_params to work, but this works
+        arr = params[:recipe][:ingredients].collect { |i| i if i[:name] != "" }.compact
 
+        ings = arr.map do |ing|
+            Ingredient.find_or_create_by(name: ing[:name])
+        end
+
+        @recipe = Recipe.find(params[:id])
+        @recipe.ingredients = ings
+        @recipe.update(recipe_params)
+        binding.pry
+    
+        redirect_to @recipe
     end
     private
 
