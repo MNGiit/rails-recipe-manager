@@ -7,11 +7,11 @@
 
     <!-- Recipe Ingredients -->
     <p>Ingredients</p>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="1"/>><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="2"/><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="3"/><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="4"/><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="5"/><br>
+    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[0].name if @recipe.ingredients[0]%> ><br>
+    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[1].name if @recipe.ingredients[1]%> ><br>
+    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[2].name if @recipe.ingredients[2]%> ><br>
+    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[3].name if @recipe.ingredients[3]%> ><br>
+    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[4].name if @recipe.ingredients[4]%> ><br>
     <!-- submit -->
     <%= f.submit %>
     
