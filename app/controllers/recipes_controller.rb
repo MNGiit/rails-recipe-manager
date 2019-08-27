@@ -83,6 +83,17 @@ class RecipesController < ApplicationController
     
         redirect_to @recipe
     end
+
+    def destroy
+        recipe = Recipe.find(params[:id])
+        if session[:user_id] == recipe.user.id
+            Recipe.find(params[:id]).destroy
+            redirect_to recipes_path
+        end
+        # Recipe.find(params[:id]).destroy
+        # redirect_to recipes_path
+    end
+
     private
 
     def recipe_params

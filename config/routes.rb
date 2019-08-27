@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :recipes, only: [:new, :create, :edit, :update]
   end
 
-  resources :recipes, only: [:index, :show]
+  resources :recipes, only: [:index, :show, :destroy]
   # resources :users
   # get '/users', to: 'users#index'
 end

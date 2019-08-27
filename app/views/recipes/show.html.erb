@@ -6,3 +6,8 @@
 <% end %>
 
 <%= link_to "Edit Recipe", edit_user_recipe_url(@recipe.user.id, @recipe) if @recipe.user.id == session[:user_id]%>
+<% if @recipe.user.id == session[:user_id] %>
+    <%= form_tag recipe_path(@recipe), method: "delete" do %>
+        <%= submit_tag "Delete #{@recipe.name}" %>
+    <% end %>
+<% end %>
