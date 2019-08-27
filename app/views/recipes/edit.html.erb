@@ -1,18 +1,4 @@
 <h1>Edit Recipe</h1>
 <%= form_for @recipe, url: {action: "update", controller: "recipes"} do |f| %>
-
-    <!-- Recipe Name -->
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name %><br>
-
-    <!-- Recipe Ingredients -->
-    <p>Ingredients</p>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[0].name if @recipe.ingredients[0]%> ><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[1].name if @recipe.ingredients[1]%> ><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[2].name if @recipe.ingredients[2]%> ><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[3].name if @recipe.ingredients[3]%> ><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value=<%= @recipe.ingredients[4].name if @recipe.ingredients[4]%> ><br>
-    <!-- submit -->
-    <%= f.submit %>
-    
+    <%= render partial: 'form', locals: {f: f} %>
 <% end %>

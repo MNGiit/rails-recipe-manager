@@ -1,18 +1,4 @@
 <h1>Create new recipe</h1>
 <%= form_for @recipe, url: {action: "create", controller: "recipes"} do |f| %>
-
-    <!-- Recipe Name -->
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name %><br>
-
-    <!-- Recipe Ingredients -->
-    <p>Ingredients</p>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="1"/><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="2"/><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="3"/><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="4"/><br>
-    <input id="recipe_ingredient" name="ingredients[][name]" type="text" value="5"/><br>
-    <!-- submit -->
-    <%= f.submit %>
-    
+    <%= render partial: 'form', locals: {f: f} %>
 <% end %>
