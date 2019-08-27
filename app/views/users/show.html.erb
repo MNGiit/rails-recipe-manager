@@ -1,5 +1,5 @@
 <h1>Show Page</h1>
 <%= @user.name %>
 <% @user.recipes.each do |recipe| %>
-    <p><%= recipe.name %></p>
+    <p><%= link_to recipe.name, recipe_path(recipe) %></p>
 <% end %>
