@@ -7,4 +7,7 @@
 
 <% if session[:user_id] %>
     <%= link_to "Log Out", logout_path, method:'delete' %>
+    <% else %>
+    <%= link_to "Log In", login_path %><br>
+    <%= link_to "Not a member? Sign up!", new_user_path %>
 <% end %>
