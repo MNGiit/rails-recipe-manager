@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   # get '/auth/:provider/callback', to: 'sessions#create'
-  # get '/auth/github/callback' => 'sessions#create'
-  get '/login/auth/github/callback' => 'sessions#create'
+  get '/auth/github/callback' => 'sessions#create'
+  # get '/login/auth/github/callback' => 'sessions#create'
 
   resources :users, only: [:index, :new, :create, :edit, :show] do
     resources :recipes, only: [:new, :create, :edit, :update]

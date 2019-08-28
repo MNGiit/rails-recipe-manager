@@ -9,12 +9,17 @@ class SessionsController < ApplicationController
  
     def create
         binding.pry
-        @user = User.find_by(email: params[:user][:email])
-        if @user && @user.authenticate(params[:user][:password])
-          session[:user_id] = @user.id
-          redirect_to @user # redirect_to user_path(@user)
+        if auth
+            name = auth[:extra][:raw_info][:login]
+            redirect_to recipes_path
         else
-          redirect_to login_path
+            @user = User.find_by(email: params[:user][:email])
+            if @user && @user.authenticate(params[:user][:password])
+                session[:user_id] = @user.id
+                redirect_to @user # redirect_to user_path(@user)
+            else
+                redirect_to login_path
+            end
         end
     end
 
