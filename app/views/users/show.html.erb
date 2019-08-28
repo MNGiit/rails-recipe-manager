@@ -1,6 +1,6 @@
-<h1>Show Page</h1>
-<%= @user.name %>
+<h1><%= @user.name %></h1>
+<%= link_to "#{@user.name}'s Recipes", user_recipes_path(@user) %>
 <p>Number of Recipes: <%= recipes_count @user %></p>
-<% @user.recipes.each do |recipe| %>
-    <p><%= link_to recipe.name, recipe_path(recipe) %></p>
-<% end %>
+<!-- @users.recipes.each do |recipe| -->
+<!--    link_to recipe.name, recipe_path(recipe) -->
+<!-- end -->
