@@ -8,10 +8,23 @@ class SessionsController < ApplicationController
     end
  
     def create
-        binding.pry
         if auth
             name = auth[:extra][:raw_info][:login]
-            redirect_to recipes_path
+            email = name + "@github.com"
+            # .find_by(:email => email)
+            if @user = User.find_by(email: email)
+                session[:user_id] = @user.id
+                # @user = find_or_make(email: email)
+                redirect_to @user
+            else
+                @user = User.create(email: email, name: name, password: SecureRandom.hex)
+                if @user.save
+                    session[:user_id] = @user.id
+                    redirect_to @user
+                else
+                    redirect_to login_path
+                end
+            end
         else
             @user = User.find_by(email: params[:user][:email])
             if @user && @user.authenticate(params[:user][:password])
@@ -25,7 +38,6 @@ class SessionsController < ApplicationController
 
     def destroy
         session.clear
-        binding.pry
         redirect_to login_path
     end
     
