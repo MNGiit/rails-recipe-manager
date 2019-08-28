@@ -38,8 +38,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'tux'
 gem 'pry'
 
+# gems needed for oauth #
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'dotenv-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
