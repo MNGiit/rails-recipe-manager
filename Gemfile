@@ -41,7 +41,8 @@ gem 'pry'
 # gems needed for oauth #
 gem 'omniauth'
 gem 'omniauth-github'
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
