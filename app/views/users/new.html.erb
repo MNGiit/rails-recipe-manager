@@ -15,6 +15,7 @@
 </div>
 <% end %>
 
+<!-- form_for @user, url: {action: "create", controller: "users"} do |f| -->
 <%= form_for @user do |f| %>
 
     <!-- User Name -->
@@ -33,4 +34,3 @@
     <%= f.submit "Create User" %>
     
 <% end %>
-, url: {action: "create", controller: "users"}
