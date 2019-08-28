@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # get '/login/auth/github/callback' => 'sessions#create'
 
   resources :users, only: [:index, :new, :create, :edit, :show] do
-    resources :recipes, only: [:new, :create, :edit, :update]
+    resources :recipes, only: [ :index, :new, :create, :edit, :update]
   end
 
   resources :recipes, only: [:index, :show, :destroy]
