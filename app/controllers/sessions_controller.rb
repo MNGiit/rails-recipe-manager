@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
             # .find_by(:email => email)
             if @user = User.find_by(email: email)
                 session[:user_id] = @user.id
-                # @user = find_or_make(email: email)
                 redirect_to @user
             else
                 @user = User.create(email: email, name: name, password: SecureRandom.hex)
