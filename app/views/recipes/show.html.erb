@@ -1,7 +1,7 @@
 <h1><%= @recipe.name %></h1>
 <h3>By: <%= username @recipe %></h3>
 <p>The Main Ingredients</p>
-<% @recipe.ingredients.each do |i| %>
+<% print_ingredients(@recipe).each do |i| %>
     <p><%= i.name %></p>
 <% end %>
 
