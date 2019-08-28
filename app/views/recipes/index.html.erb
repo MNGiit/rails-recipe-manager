@@ -2,5 +2,5 @@
 <h3>All recipes by our members</h3>
 
 <% @recipes.each do |recipe| %>
-    <p><%= link_to recipe.name, recipe_path(recipe) %>, by <%= link_to recipe.user.name, user_path(recipe.user) %></p>
+    <p><%= link_to recipe.name, recipe_path(recipe) %>, by <%= link_to username(recipe), user_path(recipe.user) %></p>
 <% end %>
