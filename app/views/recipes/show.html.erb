@@ -13,7 +13,8 @@
 <% end %>
 
 <% if @recipe.user.id != session[:user_id] %>
-
+    <% id = @recipe.id %>
+<form method="POST" action="/reviews/new">
 <p>Leave a review!</p>
 <label for="score">Score:</label>
 <select id="score" name="score" required>

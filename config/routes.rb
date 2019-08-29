@@ -10,12 +10,18 @@ Rails.application.routes.draw do
   # get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/github/callback' => 'sessions#create'
   # get '/login/auth/github/callback' => 'sessions#create'
+  post '/reviews/new' => 'reviews#create'
 
   resources :users, only: [:index, :new, :create, :edit, :show] do
     resources :recipes, only: [ :index, :new, :create, :edit, :update]
   end
 
-  resources :recipes, only: [:index, :show, :destroy]
+  resources :recipes, only: [:index, :show, :destroy] do
+    # resources :reviews, only: [:new, :create]
+  end
+
+  # resources :reviews
+
   # resources :users
   # get '/users', to: 'users#index'
 end
