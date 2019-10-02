@@ -5,6 +5,8 @@
     our members</h3>
     <% end %>
 
+<p><%= link_to "see your page", user_url(session[:user_id]) if session[:user_id]%></p>
+
 <% @recipes.each do |recipe| %>
     <p><%= link_to recipe.name, recipe_path(recipe) %>, by <%= link_to username(recipe), user_path(recipe.user) %></p>
 <% end %>
