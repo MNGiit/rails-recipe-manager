@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         # @user = User.find_or_create_by(email: user_params[:email])
         # binding.pry # remember there isn't a @user yet
         @user = User.create(user_params) # testing validations
-        binding.pry
+        # binding.pry
         # if User.find_by(email: user_params[:email])
             # message = "Email already in use. Try another email."
         #     render :new # render 'new'

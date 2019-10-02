@@ -4,17 +4,17 @@ class ReviewsController < ApplicationController
 
     def show
         whereami = "in #show"
-        binding.pry
+        # binding.pry
     end
 
     def new
         whereami = "in #new"
-        binding.pry
+        # binding.pry
     end
 
     def create
         whereami = "in #create"
-        binding.pry
+        # binding.pry
     end
 
     def edit
