@@ -84,7 +84,7 @@ class RecipesController < ApplicationController
         @recipe = Recipe.find(params[:id])
         @recipe.ingredients = ings
         @recipe.update(recipe_params)
-        binding.pry
+        # binding.pry
     
         redirect_to @recipe
     end
