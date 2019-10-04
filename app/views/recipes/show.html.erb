@@ -5,6 +5,7 @@
 <%= link_to "see your page", user_url(session[:user_id]) if session[:user_id]%>
 
 <p>The Main Ingredients</p>
+
 <% print_ingredients(@recipe).each do |i| %>
     <p><%= i.name %></p>
 <% end %>
