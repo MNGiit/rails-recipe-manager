@@ -1,7 +1,9 @@
 <h1><%= @user.name %></h1>
 <%= link_to "#{@user.name}'s Recipes", user_recipes_path(@user) %>
-<p><%= link_to "see other Recipes", recipes_url %> <%= link_to "see your page", user_url(session[:user_id]) if session[:user_id]%></p>
+<p><%= link_to "see other Recipes", recipes_url %> <%= link_to "see your page", user_url(session[:user_id]) if session[:user_id] != @user.id %></p>
+<%= link_to "Create New Recipe", new_user_recipe_path(@user) if @user.id == session[:user_id]%>
 <p>Number of Recipes: <%= recipes_count @user %></p>
 <!-- @users.recipes.each do |recipe| -->
 <!--    link_to recipe.name, recipe_path(recipe) -->
 <!-- end -->
+<%= link_to "Log Out", logout_path, method:'delete' if session[:user_id]%>
