@@ -31,6 +31,7 @@ class UsersController < ApplicationController
         #     redirect_to user_path(@user) # redirect_to @user
         # end
         if @user.valid?
+            session[:user_id] = @user.id
             redirect_to @user # redirect_to user_path(@user)
         else
             render '/users/new'# new_user_path # :new
