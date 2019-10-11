@@ -1,12 +1,12 @@
 <h1><%= @recipe.name %></h1>
-<h3>By: <%= username @recipe %></h3>
+<h3>By: <%= @recipe.username %></h3>
 <%= link_to "User Page", user_url(@recipe.user.id) %>
 <%= link_to "see other Recipes", recipes_url %>
 <%= link_to "see your page", user_url(session[:user_id]) if session[:user_id]%>
 
 <p>The Main Ingredients</p>
 
-<% print_ingredients(@recipe).each do |i| %>
+<% print_ingredients(@recipe).each do |i| %> <!-- replace this -->
     <p><%= i.name %></p>
 <% end %>
 
