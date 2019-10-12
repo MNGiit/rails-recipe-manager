@@ -1,4 +1,5 @@
 <h1>Create new recipe</h1>
+
 <%= form_for @recipe, url: {action: "create", controller: "recipes"} do |f| %>
     <%= render partial: 'form', locals: {f: f} %>
 <% end %>
