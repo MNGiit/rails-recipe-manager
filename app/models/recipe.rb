@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
     has_many :reviews
     has_many :ratings, through: :reviews
     accepts_nested_attributes_for :ingredients
+    validates :name, presence: { message: "Give this recipe a name!"}
 
     def self.by_user(user_id)
         where(user: user_id)

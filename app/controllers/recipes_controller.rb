@@ -42,8 +42,15 @@ class RecipesController < ApplicationController
         # end
         @recipe = Recipe.new(recipe_params)
         # @recipe.ingredients_attributes = recipe_params[:ingredients_attributes] # don't need to do this because Recipe.new can do it...this will double ingredients
-        @recipe.save
-        redirect_to @recipe
+        if @recipe.valid?
+            @recipe.save
+            redirect_to @recipe # redirect_to user_path(@user)
+        else
+            # render new_user_recipe_path
+            render :new
+        end
+        # @recipe.save
+        # redirect_to @recipe
     end
 
     def show
@@ -79,7 +86,6 @@ class RecipesController < ApplicationController
         @recipe = Recipe.find(params[:id])
         @recipe.ingredients = ings
         @recipe.update(recipe_params)
-        # binding.pry
     
         redirect_to @recipe
     end
@@ -102,9 +108,5 @@ class RecipesController < ApplicationController
         # testing out new code. line below works
         # params.require(:recipe).permit(:name, :user_id) # this works
         params.require(:recipe).permit(:name, :user_id, ingredients_attributes: [:name]) # can also be ingredients_attributes: :name
-    end
-
-    def ingredients_params
-        params.require(:ingredients).permit(:name) # doesn't work
     end
 end
