@@ -12,4 +12,8 @@ class Recipe < ApplicationRecord
     def username
         self.user.name
     end
+
+    def ingredients_attributes=(attributes)
+        # Process the attributes hash
+    end
 end
