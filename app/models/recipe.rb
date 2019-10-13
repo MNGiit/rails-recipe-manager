@@ -13,7 +13,12 @@ class Recipe < ApplicationRecord
         self.user.name
     end
 
-    def ingredients_attributes=(attributes)
-        # Process the attributes hash
+    def ingredients_attributes=(ingredients_attributes)
+        ingredients_attributes.values.each do |ingredient_attribute|
+            if ingredient_attribute[:name] != ""
+                ingredient = Ingredient.find_or_create_by(ingredient_attribute)
+                self.ingredients << ingredient
+            end
+        end
     end
 end

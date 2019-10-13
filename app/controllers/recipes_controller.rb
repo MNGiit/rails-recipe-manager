@@ -22,34 +22,27 @@ class RecipesController < ApplicationController
     end
 
     def create
-        binding.pry
         params[:recipe].merge!(user_id: params[:user_id]) # .merge helps add :user_id to params[:recipe]
-        params[:recipe].merge!(ingredients: params[:ingredients])
-        # params[:recipe].permit! can be avoided, look at recipe_params. but this leads to Ingredient.new problem
-        params[:recipe].permit! # can't get ingredient_params to work, but this works
+
+        # the 'too many lines of code' way
+        # params[:recipe].merge!(ingredients: params[:ingredients])
+        # params[:recipe].permit! # can't get ingredient_params to work, but this works
 
         # ings = params[:recipe][:ingredients]
 
-        # old way where it doesn't get rid of nil values..it works but i want the nil values gone
-        # ings = params[:recipe][:ingredients].collect do |ing|
-        #     Ingredient.find_or_create_by(name: ing[:name])
-        # end
-
         # use .compact to get rid of nil values
-        arr = params[:recipe][:ingredients].collect do |ing|
-            if ing[:name] != ""
-                ing
-            end
-        end.compact # use .compact to get rid of nil values
+        # arr = params[:recipe][:ingredients].collect do |ing|
+        #    if ing[:name] != ""
+        #        ing
+        #    end
+        # end.compact # use .compact to get rid of nil values
 
-        ings = arr.map do |ing|
-            Ingredient.find_or_create_by(name: ing[:name])
-        end
-
+        # ings = arr.map do |ing|
+        #    Ingredient.find_or_create_by(name: ing[:name])
+        # end
         @recipe = Recipe.new(recipe_params)
-        @recipe.ingredients = ings
+        # @recipe.ingredients_attributes = recipe_params[:ingredients_attributes] # don't need to do this because Recipe.new can do it...this will double ingredients
         @recipe.save
-    
         redirect_to @recipe
     end
 
