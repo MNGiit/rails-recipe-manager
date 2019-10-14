@@ -55,6 +55,23 @@ class RecipesController < ApplicationController
 
     def show
         @recipe = Recipe.find(params[:id])
+        if session[:user_id] && @recipe.user_id != session[:user_id]
+            user_review = @recipe.reviews.find_by(user_id: session[:user_id])
+            if user_review != nil
+                @review = user_review
+            else
+                @review = Review.new(user_id: session[:user_id])
+            end
+        end
+        # if recipe isn't by current user
+        #   find review by user using session[:user_id]
+        #   user_review = @recipe.reviews.find_by(user_id: session[:user_id])
+        #   if user_review NOT EMPTY
+        #        @review = user_review
+        #   else
+        #       @review = Review.new(user_id: session[:user_id])
+        #   end
+        #   @review = Review.new(user_id: session[:user_id]) if user_review NOT empty
     end
     
     def edit
