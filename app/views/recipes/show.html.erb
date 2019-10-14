@@ -29,7 +29,14 @@ options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]])
 
 <%= form_for @review, url: {action: "create", controller: "reviews"} do |r| %>
     <%= r.label :score, "Score" %>
-    <%= select_tag(:score, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]])) %>
+    <!-- select_tag(:score, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]])) -->
+    <!-- select("review", "score", options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]]) ) -->
+   
+    <%= r.select :score, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]]), include_blank: true %>
+    hidden_field_tag(name, value = nil, options = {}) public
+    <% binding.pry %>
+    <!-- r.hidden_field "recipe_id", @recipe.id --> <!-- doesn't work -->
+    <%= hidden_field_tag("review[recipe_id]", @recipe.id) %>
     <%= r.submit "Submit Score" %>
 <% end %>
 

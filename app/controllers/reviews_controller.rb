@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
 
     def create
         whereami = "in #create"
-        # binding.pry
+        binding.pry
     end
 
     def edit
