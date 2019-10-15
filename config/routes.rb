@@ -11,14 +11,15 @@ Rails.application.routes.draw do
   get '/auth/github/callback' => 'sessions#create'
   # get '/login/auth/github/callback' => 'sessions#create'
   post '/reviews/new' => 'reviews#create' #
-  patch '/reviews/new' => 'reviews#update' # !!! seems to work 
+  patch '/reviews/new' => 'reviews#create' #
+  # patch '/reviews/new' => 'reviews#update' # !!! seems to work. disabled to let #create do both 
 
   resources :users, only: [:index, :new, :create, :edit, :show] do
     resources :recipes, only: [ :index, :new, :create, :edit, :update]
   end
 
   resources :recipes, only: [:index, :show, :destroy] do
-    resources :reviews, only: [:create, :update]
+    resources :reviews, only: [:create] # took out :update
   end
 
   # resources :reviews
