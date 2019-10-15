@@ -20,24 +20,26 @@
 <% if @recipe.user.id != session[:user_id] %>
     <% id = @recipe.id %>
 <% end %>
-<p>Leave a review!</p>
+
 <!--
 options_for_select([["Dollar", "$"], ["Kroner", "DKK"]])
 ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]
 options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]])
 -->
 
-<%= form_for @review, url: {action: "create", controller: "reviews"} do |r| %>
-    <%= r.label :score, "Score" %>
-    <!-- select_tag(:score, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]])) -->
-    <!-- select("review", "score", options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]]) ) -->
-   
-    <%= r.select :score, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], @review.score), include_blank: true %>
+<% if session[:user_id] && session[:user_id] != @recipe.user_id %>
+    <p>Leave a review!</p>
+    <%= form_for @review, url: {action: "create", controller: "reviews"} do |r| %>
+        <%= r.label :score, "Score" %>
+        <!-- select_tag(:score, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]])) -->
+        <!-- select("review", "score", options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]]) ) -->
+    
+        <%= r.select :score, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], @review.score), include_blank: true %>
 
-    <!-- r.hidden_field "recipe_id", @recipe.id --> <!-- doesn't work -->
-    <%= hidden_field_tag("review[recipe_id]", @recipe.id) %>
-    <%= r.submit "Submit Score" %>
+        <!-- r.hidden_field "recipe_id", @recipe.id --> <!-- doesn't work -->
+        <%= hidden_field_tag("review[recipe_id]", @recipe.id) %>
+        <%= r.submit "Submit Score" %>
+    <% end %>
 <% end %>
-
 <!-- https://stackoverflow.com/questions/3364492/actioncontrollerinvalidauthenticitytoken -->
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
