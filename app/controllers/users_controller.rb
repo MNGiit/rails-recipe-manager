@@ -4,7 +4,12 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        # @project = Project.where(id: params[:id]).first
+        # https://stackoverflow.com/questions/14882690/what-is-the-best-way-to-handle-no-id-errors-in-ruby-on-rails
+        @user = User.where(id: params[:id]).first
+        if @user == nil
+            redirect_to recipes_path
+        end
     end
 
     def new
