@@ -1,10 +1,11 @@
 class RecipesController < ApplicationController
     def index
+        # scope method applied and assigned to @recipes. puts recipes in alphabetical order
         if params[:user_id]
             @user = User.find(params[:user_id])
-            @recipes = @user.recipes
+            @recipes = @user.recipes.order('name ASC')
         else
-            @recipes = Recipe.all
+            @recipes = Recipe.order('name ASC')
         end
     end
 
