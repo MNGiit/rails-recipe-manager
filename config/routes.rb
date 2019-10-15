@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   # get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/github/callback' => 'sessions#create'
   # get '/login/auth/github/callback' => 'sessions#create'
-  post '/reviews/new' => 'reviews#create'
+  post '/reviews/new' => 'reviews#create' #
+  patch '/reviews/new' => 'reviews#update' # !!! seems to work 
 
   resources :users, only: [:index, :new, :create, :edit, :show] do
     resources :recipes, only: [ :index, :new, :create, :edit, :update]
