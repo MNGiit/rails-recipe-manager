@@ -1,3 +1,4 @@
 class Review < ApplicationRecord
-    has_many :rating
+    belongs_to :user
+    belongs_to :recipe
 end
