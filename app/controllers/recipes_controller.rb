@@ -48,6 +48,7 @@ class RecipesController < ApplicationController
             redirect_to @recipe # redirect_to user_path(@user)
         else
             # render new_user_recipe_path
+            5.times {@recipe.ingredients << Ingredient.new}
             render :new
         end
         # @recipe.save
