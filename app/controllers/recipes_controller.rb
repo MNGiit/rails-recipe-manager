@@ -3,9 +3,11 @@ class RecipesController < ApplicationController
         # scope method applied and assigned to @recipes. puts recipes in alphabetical order
         if params[:user_id]
             @user = User.find(params[:user_id])
-            @recipes = @user.recipes.order('name ASC')
+            # @recipes = @user.recipes.order('name ASC') # scope :order_by_abc
+            @recipes = @user.recipes.order_by_abc
         else
-            @recipes = Recipe.order('name ASC')
+            # @recipes = Recipe.order('name ASC') # scope :order_by_abc
+            @recipes = Recipe.order_by_abc
         end
     end
 

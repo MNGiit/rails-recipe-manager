@@ -5,6 +5,10 @@ class Recipe < ApplicationRecord
     has_many :ratings, through: :reviews
     accepts_nested_attributes_for :ingredients
     validates :name, presence: { message: "Give this recipe a name!"}
+    scope :order_by_abc, -> { order('name ASC') }
+    # scope :red, -> { where(color: 'red') }
+    # @recipes = @user.recipes.order('name ASC')
+    # @recipes = Recipe.order('name ASC')
 
     def username
         self.user.name
