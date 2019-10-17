@@ -43,3 +43,7 @@ options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]])
 <% end %>
 <!-- https://stackoverflow.com/questions/3364492/actioncontrollerinvalidauthenticitytoken -->
 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<h3>Scores by other members</h3>
+<% @recipe.reviews.each do |review| %>
+    <p><%= review.score %> - <%= review.user.name %></p>
+<% end %>
