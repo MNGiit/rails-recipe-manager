@@ -125,9 +125,11 @@ class RecipesController < ApplicationController
 
     def recipe_params
         # params.require(:recipe).permit(:name, :user_id, { ingredients: :name}) # this works but ingredients causes problems when doing Ingredient.new(recipe_params)
-
         # testing out new code. line below works
         # params.require(:recipe).permit(:name, :user_id) # this works
-        params.require(:recipe).permit(:name, :user_id, ingredients_attributes: [:name]) # can also be ingredients_attributes: :name
+
+        # testing out new code
+        # params.require(:recipe).permit(:name, :user_id, ingredients_attributes: [:name]) # can also be ingredients_attributes: :name # PREVIOUS WORKING CODE
+        params.require(:recipe).permit(:name, :user_id, recipe_ingredients_attributes: [:ingredient_id]) # new code
     end
 end
