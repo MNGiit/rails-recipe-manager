@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
             if session[:user_id] == params[:user_id].to_i
                 @recipe = Recipe.new
                 5.times {@recipe.ingredients << Ingredient.new}
+                binding.pry
             else
                 redirect_to "/users/#{session[:user_id]}"
             end
