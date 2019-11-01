@@ -1,8 +1,8 @@
 class Recipe < ApplicationRecord
     belongs_to :user
     # has_many :ingredients # testing out recipe_ingredients
-    has_many recipe_ingredients
-    has_many :ingredients, through :recipe_ingredients
+    has_many :recipe_ingredients
+    has_many :ingredients, through: :recipe_ingredients
     has_many :reviews
     has_many :ratings, through: :reviews
     # accepts_nested_attributes_for :ingredients # testing out recipe_ingredients
