@@ -27,6 +27,7 @@ class Recipe < ApplicationRecord
     end
 
     def recipe_ingredients_attributes=(recipe_ingredients_attributes)
+        binding.pry
         recipe_ingredients_attributes.values.each do |recipe_ingredient_attributes|
             # self.recipe_ingredients << recipe_ingredient_attributes
         end

@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
                 @recipe = Recipe.new
                 5.times {@recipe.recipe_ingredients << RecipeIngredient.new}
                 # 5.times {@recipe.ingredients << Ingredient.new}
-                binding.pry
+                # binding.pry
             else
                 redirect_to "/users/#{session[:user_id]}"
             end
@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
 
     def create
         params[:recipe].merge!(user_id: params[:user_id]) # .merge helps add :user_id to params[:recipe]
-
+        binding.pry
         # the 'too many lines of code' way
         # params[:recipe].merge!(ingredients: params[:ingredients])
         # params[:recipe].permit! # can't get ingredient_params to work, but this works

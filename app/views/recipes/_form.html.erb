@@ -10,8 +10,9 @@
 <% end %>
 
 <p>Recipe Ingredients</p>
+
 <%= f.fields_for :recipe_ingredients do |r_ing| %>
-    <%= r_ing.text_field :name %> <%= r_ing.text_field :quantity %><br>
+    <%= r_ing.text_field :ingredient_name %> <%= r_ing.text_field :quantity %><br>
 <% end %>
 
 <!-- Old way of getting ingredients. -->
