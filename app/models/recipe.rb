@@ -27,9 +27,20 @@ class Recipe < ApplicationRecord
     end
 
     def recipe_ingredients_attributes=(recipe_ingredients_attributes)
-        binding.pry
         recipe_ingredients_attributes.values.each do |recipe_ingredient_attributes|
             # self.recipe_ingredients << recipe_ingredient_attributes
+            if recipe_ingredient_attributes[:ingredient_id] != ""
+                ingredient = Ingredient.find_or_create_by(name: recipe_ingredient_attributes[:ingredient_id])
+                recipe_ingredient = RecipeIngredient.new
+                recipe_ingredient.quantity = recipe_ingredient_attributes[:quantity] if recipe_ingredient_attributes[:quantity] != ""
+                recipe_ingredient.ingredient_id = ingredient.id
+                binding.pry
+                # apply recipe_id if needed. might have to first "save" recipe and then use self.id
+                # apply quantity too
+                # recipe_ingredient.ingredient_id = ingredient works in pry but not in real time?!?!?!
+                # recipe_ingredient.ingredient.id = ingredient # recipe_ingredient.ingredient = ingredient doesn't work, produes error
+                self.recipe_ingredients << recipe_ingredient
+            end
         end
     end
 end

@@ -16,7 +16,15 @@ class RecipesController < ApplicationController
             if session[:user_id] == params[:user_id].to_i
                 @recipe = Recipe.new
                 5.times {@recipe.recipe_ingredients << RecipeIngredient.new}
+                # array.each {|item| puts "The current array item is: #{item}"}
+                # testRecipeIngredient.ingredients << testIngredient doesn't work
+                # testRecipeIngredient.ingredient_id = testIngredient.id works but trying it below doesn't work
+                # 5.times {@recipe.recipe_ingredients.ingredient_id << Ingredient.new.id}
+                # 5.times {@recipe.recipe_ingredients.ingredients << Ingredient.new}
+                # @ingredients = 5.times.map {Ingredient.new} # testing out above line
                 # 5.times {@recipe.ingredients << Ingredient.new}
+                # later test out line below to see if it's needed by commenting it out
+                @recipe.recipe_ingredients.each {|item| item.ingredient_id = Ingredient.new.id} # if this doesn't work try creating @ingredients then use loop
                 # binding.pry
             else
                 redirect_to "/users/#{session[:user_id]}"
@@ -28,7 +36,7 @@ class RecipesController < ApplicationController
 
     def create
         params[:recipe].merge!(user_id: params[:user_id]) # .merge helps add :user_id to params[:recipe]
-        binding.pry
+        # params[:recipe][:recipe_ingredients_attributes].values
         # the 'too many lines of code' way
         # params[:recipe].merge!(ingredients: params[:ingredients])
         # params[:recipe].permit! # can't get ingredient_params to work, but this works
@@ -52,7 +60,9 @@ class RecipesController < ApplicationController
             redirect_to @recipe # redirect_to user_path(@user)
         else
             # render new_user_recipe_path
-            5.times {@recipe.ingredients << Ingredient.new}
+            # 5.times {@recipe.ingredients << Ingredient.new} # old way
+            # new way
+            5.times {@recipe.recipe_ingredients << RecipeIngredient.new} # might not need this
             render :new
         end
         # @recipe.save
@@ -132,6 +142,6 @@ class RecipesController < ApplicationController
 
         # testing out new code
         # params.require(:recipe).permit(:name, :user_id, ingredients_attributes: [:name]) # can also be ingredients_attributes: :name # PREVIOUS WORKING CODE
-        params.require(:recipe).permit(:name, :user_id, recipe_ingredients_attributes: [:ingredient_id]) # new code
+        params.require(:recipe).permit(:name, :user_id, recipe_ingredients_attributes: [:ingredient_id, :quantity]) # new code
     end
 end
