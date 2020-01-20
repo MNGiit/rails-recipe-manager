@@ -5,10 +5,14 @@
 <%= link_to "see your page", user_url(session[:user_id]) if session[:user_id]%>
 
 <p>The Main Ingredients</p>
-
-<% print_ingredients(@recipe).each do |i| %> <!-- replace this -->
+<% @recipe.recipe_ingredients.each do |i| %>
+    <% i = Ingredient.find(i.ingredient_id) %>
     <p><%= i.name %></p>
-<% end %>
+ <% end %>
+
+<%# print_ingredients(@recipe).each do |i| %> <!-- replace this -->
+    <p><%#= i.name %></p>
+<%# end %>
 
 <%= link_to "Edit Recipe", edit_user_recipe_url(userid(@recipe), @recipe) if userid(@recipe) == session[:user_id]%>
 <% if @recipe.user.id == session[:user_id] %>
