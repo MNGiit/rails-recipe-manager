@@ -15,17 +15,38 @@ class RecipesController < ApplicationController
         if session[:user_id]
             if session[:user_id] == params[:user_id].to_i
                 @recipe = Recipe.new
-                5.times {@recipe.recipe_ingredients << RecipeIngredient.new}
+                # 5.times {@recipe.recipe_ingredients << RecipeIngredient.new}
+
+                # 5.times do
+                #     recipe_ingredient = @recipe.recipe_ingredients.build
+                #     recipe_ingredient.build_ingredient
+                # end
+
+                5.times do
+                    @recipe.recipe_ingredients.build
+                end
+
+                @recipe.recipe_ingredients.each do |r_ing|
+                    r_ing.build_ingredient
+                end
+
                 # array.each {|item| puts "The current array item is: #{item}"}
                 # testRecipeIngredient.ingredients << testIngredient doesn't work
                 # testRecipeIngredient.ingredient_id = testIngredient.id works but trying it below doesn't work
                 # 5.times {@recipe.recipe_ingredients.ingredient_id << Ingredient.new.id}
                 # 5.times {@recipe.recipe_ingredients.ingredients << Ingredient.new}
+                
                 # @ingredients = 5.times.map {Ingredient.new} # testing out above line
+                # @ingredients.each do |ing|
+                #     ing.recipe_ingredients.build
+                # end
+                # @recipe_ingredients = 5.times.map {RecipeIngredient.new}
+
+
                 # 5.times {@recipe.ingredients << Ingredient.new}
                 # later test out line below to see if it's needed by commenting it out
-                @recipe.recipe_ingredients.each {|item| item.ingredient_id = Ingredient.new.id} # if this doesn't work try creating @ingredients then use loop
-                # binding.pry
+
+                # @recipe.recipe_ingredients.each {|item| item.ingredient_id = Ingredient.new.id} # if this doesn't work try creating @ingredients then use loop
             else
                 redirect_to "/users/#{session[:user_id]}"
             end
@@ -35,6 +56,7 @@ class RecipesController < ApplicationController
     end
 
     def create
+        binding.pry
         params[:recipe].merge!(user_id: params[:user_id]) # .merge helps add :user_id to params[:recipe]
         # params[:recipe][:recipe_ingredients_attributes].values
         # the 'too many lines of code' way
@@ -142,6 +164,6 @@ class RecipesController < ApplicationController
 
         # testing out new code
         # params.require(:recipe).permit(:name, :user_id, ingredients_attributes: [:name]) # can also be ingredients_attributes: :name # PREVIOUS WORKING CODE
-        params.require(:recipe).permit(:name, :user_id, recipe_ingredients_attributes: [:ingredient_id, :quantity]) # new code
+        params.require(:recipe).permit(:name, :user_id, recipe_ingredients_attributes: [:name, :quantity]) # new code
     end
 end

@@ -2,18 +2,44 @@
 <%= f.label :name, "Name" %>
 <%= f.text_field :name %><br>
 
+
 <!-- Recipe Ingredients -->
 <p>Recipe Ingredients</p>
+<%= f.fields_for :recipe_ingredients do |r_ing| %>
+    <%= r_ing.fields_for :ingredient do |i| %>
+        <%= i.label :name, "Ingredient:" %>
+        <%= i.text_field :name %>
+    <% end %>
 
-<%= f.fields_for :recipe_ingredients, @ingredients do |r_ing| %>
-    <%= r_ing.text_field :ingredient_id %> <%= r_ing.text_field :quantity %><br>
+    <%= r_ing.label :quantity, "Quantity:" %>
+    <%= r_ing.text_field :quantity %><br>
 <% end %>
+
+<!-- submit -->
+<%= f.submit %>
+
+<!-- old or test code -->
+<%#= r_ing.text_field :ingredient %>
+<%#= r_ing.label :ingredient_name, "Ingredient:" %>
+<%#= r_ing.text_field :ingredient_name %
+
+<!-- interestingly r_ing.object.ingredient is one way to get to ingredient through pry %>
+<!-- but it doesn't work with .text_field -->
+<%#= r_ing.object.ingredient.text_field :name %>
+
+<!-- build_ingredient and .text_field ingredient works -->
+<!-- don't have to build ingredient it seems -->
+<%# r_ing_build_ingredient %>
+
+<%#= f.fields_for :ingredients do |ing| %>
+    <%#= ing.text_field :name %> <%#= r_ing.text_field :quantity %><br>
+    <%#= ing.fields_for :recipe_ingredients do |r_ing| %>
+        <%#= r_ing.text_field :quantity %><br>
+    <%# end %>
+<%# end %>
 
 <!-- old way -->
 <!-- <p>Ingredients</p> -->
 <%# = f.fields_for :ingredients do |ing| %>
     <%# = ing.text_field :name %><br>
 <%#  end %>
-
-<!-- submit -->
-<%= f.submit %>

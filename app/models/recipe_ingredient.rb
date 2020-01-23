@@ -1,6 +1,6 @@
 class RecipeIngredient < ApplicationRecord
-    belongs_to :ingredients
-    belongs_to :recipes
+    belongs_to :ingredient, optional: true # fix it
+    belongs_to :recipe, optional: true # fix it
     # has_many :recipe_ingredients
     # has_many :recipes, through: :recipe_ingredients
 
