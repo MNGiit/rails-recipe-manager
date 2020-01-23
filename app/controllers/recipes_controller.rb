@@ -26,9 +26,10 @@ class RecipesController < ApplicationController
                     @recipe.recipe_ingredients.build
                 end
 
-                @recipe.recipe_ingredients.each do |r_ing|
-                    r_ing.build_ingredient
-                end
+                # don't seem to need to build_ingredient but will keep here just in case
+                # @recipe.recipe_ingredients.each do |r_ing|
+                #     r_ing.build_ingredient
+                # end
 
                 # array.each {|item| puts "The current array item is: #{item}"}
                 # testRecipeIngredient.ingredients << testIngredient doesn't work
@@ -56,7 +57,6 @@ class RecipesController < ApplicationController
     end
 
     def create
-        binding.pry
         params[:recipe].merge!(user_id: params[:user_id]) # .merge helps add :user_id to params[:recipe]
         # params[:recipe][:recipe_ingredients_attributes].values
         # the 'too many lines of code' way
