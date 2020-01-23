@@ -75,6 +75,13 @@ class RecipesController < ApplicationController
         # ings = arr.map do |ing|
         #    Ingredient.find_or_create_by(name: ing[:name])
         # end
+
+
+        # params[:recipe][:recipe_ingredients_attributes] ### this line shows important params
+        # params[:recipe][:recipe_ingredients_attributes][:"0"] ### this line shows this...
+        # <ActionController::Parameters {"ingredient"=>{"name"=>"Carrot"}, "quantity"=>"1"} permitted: false>
+        # can only permit it with this line so far: params[:recipe][:recipe_ingredients_attributes][:"0"][:ingredient].permit!
+        # can also seem to permit like this: params.require(:recipe).permit( recipe_ingredients_attributes: [ingredient: :name] )
         @recipe = Recipe.new(recipe_params)
         # @recipe.ingredients_attributes = recipe_params[:ingredients_attributes] # don't need to do this because Recipe.new can do it...this will double ingredients
         if @recipe.valid?
@@ -164,6 +171,7 @@ class RecipesController < ApplicationController
 
         # testing out new code
         # params.require(:recipe).permit(:name, :user_id, ingredients_attributes: [:name]) # can also be ingredients_attributes: :name # PREVIOUS WORKING CODE
-        params.require(:recipe).permit(:name, :user_id, recipe_ingredients_attributes: [:name, :quantity]) # new code
+        # params.require(:recipe).permit(:name, :user_id, recipe_ingredients_attributes: [:name, :quantity]) # new code ## testing newer code
+        params.require(:recipe).permit(:name, :user_id, recipe_ingredients_attributes: [[ingredient: :name], :quantity])
     end
 end
