@@ -7,6 +7,15 @@ class CategoriesController < ApplicationController
         @category = Category.new
     end
     
+
+    def new
+        if session[:user_id]
+            @category = Category.new
+        else
+            redirect_to "/login"
+        end
+    end
+    
     def show
         @category = Category.find(params[:id])
     end
