@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   # get '/categories/show' => 'categories#show'
-  resources :categories, only: [:show, :new, :create]
+  resources :categories, only: [:index, :show, :new, :create]
   # resources :reviews
 
   # resources :users

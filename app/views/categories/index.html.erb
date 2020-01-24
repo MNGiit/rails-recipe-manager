@@ -1,0 +1,8 @@
+<h1>Categories</h1>
+<h3>Welcome to the Categories page</h3>
+
+<p><%= link_to "see your page", user_url(session[:user_id]) if session[:user_id]%></p>
+
+<% @categories.each do |c| %>
+    <p><%= link_to c.name, category_path(c) %></p>
+<% end %>
