@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create] # took out :update
   end
 
+  # get '/categories/show' => 'categories#show'
+  resources :categories, only: [:show, :new, :create]
   # resources :reviews
 
   # resources :users

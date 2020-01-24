@@ -27,3 +27,7 @@ french_fries = Recipe.create(name: 'French Fries', user_id: jill.id)
 hamburger = Recipe.create(name: 'Hamburger', user_id: jill.id)
 turkey_burger = Recipe.create(name: 'Turkey Burger', user_id: jill.id)
 pea_soup = Recipe.create(name: 'Pea Soup', user_id: jill.id)
+
+breakfast = Category.create(name: 'Breakfast')
+lunch = Category.create(name: 'Lunch')
+dinner = Category.create(name: 'Dinner')

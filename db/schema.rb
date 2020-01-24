@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_01_054005) do
+ActiveRecord::Schema.define(version: 2020_01_24_215759) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "ingredient_lists", force: :cascade do |t|
     t.string "name"
